@@ -807,18 +807,28 @@ Then $\sum_i^m X_{A_i} = \dfrac{1}{m}\mathcal{P}_T^\perp F$, and
 \[
 \mathbb{E}[X_{A_i}] =  \dfrac{1}{m}\mathcal{P}_T^\perp F=0.
 \]
-Using {\color{red}(The property of incoherence)} $\underset{a} {\mathrm{max}} ~\|w_a\|_{op}^2 \le \nu \dfrac{1}{n}$ and the fact that $\|\mathcal{P}_T^\perp w_a\|_{op} \le \|w_a\|_{op}$ we estimate the variance:
+Using the property of incoherence $\underset{a} {\mathrm{max}} ~\|w_a\|_{op}^2 \le \nu \dfrac{1}{n}$ and the fact that $\|\mathcal{P}_T^\perp w_a\|_{op} \le \|w_a\|_{op}$ we estimate the variance:
 \begin{equation}
 \begin{aligned}
-\mathbb{E}[X_{A_i}^2] & \le \dfrac{n^2}{m^2}\sum_a(w_a,F)^2\|(\mathcal{P}_T^\perp w_a)^2\|_{op} \\
-& \le \dfrac{n^2}{m^2}\dfrac{\nu}{2n}\|F\|_F^2 = \dfrac{n\nu}{m^2} = \dfrac{\nu}{m\kappa r} := V_0^2
+\|\mathbb{E}[X_{A_i}^2]\|_{op} &=\|\mathbb{E}[\dfrac{n^4}{m^2}\mathcal{P}_T^\perp w_a(w_a,F)\mathcal{P}_T^\perp w_a(w_a,F)]\|_{op}\qquad \text{(expectation of discrete r.v.)}\\
+& = \frac{n^4}{m^2}\|\frac{1}{n^2}\sum_a(w_a,F)^2(\mathcal{P}_T^\perp w_a)^2\|_{op}\\
+& \le \dfrac{n^2}{m^2}\sum_a(w_a,F)^2\|(\mathcal{P}_T^\perp w_a)^2\|_{op} \\
+& \le \dfrac{n^2}{m^2}\dfrac{\nu}{n}\|F\|_F^2 = \dfrac{n\nu}{m^2} = \dfrac{\nu}{m\kappa r} := V_0^2
 \end{aligned}
 \label{eq:37}
 \end{equation}
 Next,
-\[
-\|X_{A_i}\|_{op} \le \dfrac{n^2}{m}\sqrt{\dfrac{\nu}{n}\dfrac{2\nu r}{n}}=\dfrac{n\nu \sqrt{2r}}{m} = \dfrac{\sqrt{2}\nu}{\sqrt{r}\kappa},
-\]
+\begin{equation}
+\begin{aligned}
+\|X_{A_i}\|_{op} &= \frac{n^2}{m}\|\mathcal{P}_T^\perp w_{A_i}(w_{A_i},F)\|_{op}\\
+&=\frac{n^2}{m}(\mathcal{P}_T w_{A_i},F)\|\mathcal{P}_T^\perp w_{A_i}\|_{op} \quad (\text{since }F\in T)\\
+&\le\frac{n^2}{m}(\mathcal{P}_T w_{A_i},F)\|w_{A_i}\|_{op}
+&\le \dfrac{n^2}{m}\sqrt{\dfrac{\nu}{n}\dfrac{2\nu r}{n}}\\
+&=\dfrac{n\nu \sqrt{2r}}{m} \\
+&= \dfrac{\sqrt{2}\nu}{\sqrt{r}\kappa},
+\end{aligned}
+\end{equation}
+
 so that
 \[
 \dfrac{2mV_0^2}{\|X_{A_i}\|_{op}}\ge \dfrac{2m\nu}{m\kappa r}\dfrac{\sqrt{r} \kappa}{\sqrt{2}\nu} = \dfrac{\sqrt{2}}{\sqrt{r}}

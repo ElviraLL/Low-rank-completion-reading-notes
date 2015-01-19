@@ -807,21 +807,32 @@ Then $\sum_i^m X_{A_i} = \dfrac{1}{m}\mathcal{P}_T^\perp F$, and
 \[
 \mathbb{E}[X_{A_i}] =  \dfrac{1}{m}\mathcal{P}_T^\perp F=0.
 \]
-Using {\color{red}(The property of incoherence)} $\underset{a} {\mathrm{max}} ~\|w_a\|_{op}^2 \le \nu \dfrac{1}{n}$ and the fact that $\|\mathcal{P}_T^\perp w_a\|_{op} \le \|w_a\|_{op}$ we estimate the variance:
+Using the property of incoherence $\underset{a} {\mathrm{max}} ~\|w_a\|_{op}^2 \le \nu \dfrac{1}{n}$ and the fact that $\|\mathcal{P}_T^\perp w_a\|_{op} \le \|w_a\|_{op}$ we estimate the variance:
 \begin{equation}
 \begin{aligned}
-\mathbb{E}[X_{A_i}^2] & \le \dfrac{n^2}{m^2}\sum_a(w_a,F)^2\|(\mathcal{P}_T^\perp w_a)^2\|_{op} \\
-& \le \dfrac{n^2}{m^2}\dfrac{\nu}{2n}\|F\|_F^2 = \dfrac{n\nu}{m^2} = \dfrac{\nu}{m\kappa r} := V_0^2
+\|\mathbb{E}[X_{A_i}^2]\|_{op} &=\|\mathbb{E}[\dfrac{n^4}{m^2}\mathcal{P}_T^\perp w_a(w_a,F)\mathcal{P}_T^\perp w_a(w_a,F)]\|_{op}\qquad \text{(expectation of discrete r.v.)}\\
+& = \frac{n^4}{m^2}\|\frac{1}{n^2}\sum_a(w_a,F)^2(\mathcal{P}_T^\perp w_a)^2\|_{op}\\
+& \le \dfrac{n^2}{m^2}\sum_a(w_a,F)^2\|(\mathcal{P}_T^\perp w_a)^2\|_{op} \\
+& \le \dfrac{n^2}{m^2}\dfrac{\nu}{n}\|F\|_F^2 = \dfrac{n\nu}{m^2} = \dfrac{\nu}{m\kappa r} := V_0^2
 \end{aligned}
 \label{eq:37}
 \end{equation}
 Next,
-\[
-\|X_{A_i}\|_{op} \le \dfrac{n^2}{m}\sqrt{\dfrac{\nu}{n}\dfrac{2\nu r}{n}}=\dfrac{n\nu \sqrt{2r}}{m} = \dfrac{\sqrt{2}\nu}{\sqrt{r}\kappa},
-\]
+\begin{equation}
+\begin{aligned}
+\|X_{A_i}\|_{op} &= \frac{n^2}{m}\|\mathcal{P}_T^\perp w_{A_i}(w_{A_i},F)\|_{op}\\
+&=\frac{n^2}{m}(\mathcal{P}_T w_{A_i},F)\|\mathcal{P}_T^\perp w_{A_i}\|_{op} \quad (\text{since }F\in T)\\
+&\le\frac{n^2}{m}(\mathcal{P}_T w_{A_i},F)\|w_{A_i}\|_{op} \quad (\text{since }\mathcal{P}_T^\perp w_{A_i} \le w_{A_i})\\
+&=\frac{n^2}{m}\|\mathcal{P}_T w_{A_i}\|_F\|F\|_F\|w_{A_i}\|_{op}\\
+&= \frac{n^2}{m}\sqrt{\frac{2\nu r}{n}\cdot 1\cdot \frac{\nu}{n}}\\
+&=\frac{n\nu \sqrt{2r}}{m} \\
+&= \frac{\sqrt{2}\nu}{\sqrt{r}\kappa},
+\end{aligned}
+\end{equation}
+
 so that
 \[
-\dfrac{2mV_0^2}{\|X_{A_i}\|_{op}}\ge \dfrac{2m\nu}{m\kappa r}\dfrac{\sqrt{r} \kappa}{\sqrt{2}\nu} = \dfrac{\sqrt{2}}{\sqrt{r}}
+\frac{2mV_0^2}{\|X_{A_i}\|_{op}}\ge \frac{2m\nu}{m\kappa r}\frac{\sqrt{r} \kappa}{\sqrt{2}\nu} = \frac{\sqrt{2}}{\sqrt{r}}
 \]
 Now use Theorem 6.
 \end{proof}
@@ -830,7 +841,7 @@ We sample $l$ batches of basis elements, the $i$th set consisting of $m_i=\kappa
 
 For $1\le i \le l$, let
 \[
-\mathcal{R}: \sigma \mapsto \dfrac{n^2}{m_i}\sum_{j=m_1+\dots+m_{i-1}+1}^{m_1+\dots+m_i} w_{A_i}( w_{A_i},\sigma)
+\mathcal{R}: \sigma \mapsto \frac{n^2}{m_i}\sum_{j=m_1+\dots+m_{i-1}+1}^{m_1+\dots+m_i} w_{A_i}( w_{A_i},\sigma)
 \]
 be the $i$th sampling operator associated with the $i$th batch and set
 \[
@@ -869,15 +880,15 @@ A first simple choice of parameters (to ne refined in section \uppercase\expanda
 \end{align*}
 for some $\beta > 0$. It follows that 
 \[
-\|X_i\|_F \le \sqrt{r}2^{-i}, \qquad \|\mathcal{P}_T^\perp Y_l\|_{op} \le \dfrac{1}{4} \sum_{i=1}^l 2^{-(i-1)} < \dfrac{1}{2}
+\|X_i\|_F \le \sqrt{r}2^{-i}, \qquad \|\mathcal{P}_T^\perp Y_l\|_{op} \le \frac{1}{4} \sum_{i=1}^l 2^{-(i-1)} < \frac{1}{2}
 \]
 with $l = [\log_2(2n^2\sqrt{r})]$, the conditions in Equation (\ref{eq:35}) are met. Using Lemma 5 and Lemma 7 te failure probabiliries become
 \begin{align*}
-&p_1 \qquad \le \quad 4nr \exp \left( -\dfrac{\kappa}{32\nu}\right),\\
-&p_{op}(i)\quad \le \quad  4nr \exp \left( -\dfrac{\kappa_i}{32\nu}\right),\\
-&p_3(i)\quad \le \quad  2nr \exp \left( -\dfrac{\kappa_i}{64\nu}\right)
+&p_1 \qquad \le \quad 4nr \exp \left( -\frac{\kappa}{32\nu}\right),\\
+&p_{op}(i)\quad \le \quad  4nr \exp \left( -\frac{\kappa_i}{32\nu}\right),\\
+&p_3(i)\quad \le \quad  2nr \exp \left( -\frac{\kappa_i}{64\nu}\right)
 \end{align*}
-all of which are bounded above by $\dfrac{1}{2l}n^{-\beta}$. Theorem 3 for Fourier-type bases thus follows from a simple application of the union bound. The number of coefficients sampled must exceed
+all of which are bounded above by $\frac{1}{2l}n^{-\beta}$. Theorem 3 for Fourier-type bases thus follows from a simple application of the union bound. The number of coefficients sampled must exceed
 \begin{align*}
 m &=l\kappa_i = 64\nu(\ln(4nr)+\ln(2l)+\beta \ln n)\log_2(2n^2\sqrt{r})rn\\
 & = O(rn\nu (1+\beta)\ln^2n)
@@ -886,37 +897,37 @@ m &=l\kappa_i = 64\nu(\ln(4nr)+\ln(2l)+\beta \ln n)\log_2(2n^2\sqrt{r})rn\\
 
 \subsection{\textit{\uppercase\expandafter{\romannumeral5}. The certificate: general case}}
 
-In this section, we show that the construction of $Y$ described above continues to work if the assumption by $\underset{a} {\mathrm{max}} ~\|w_a\|_{op}^2 \le \nu \dfrac{1}{n}$ on the operator norm of the basis elements is replaced by the incoherence properties 
+In this section, we show that the construction of $Y$ described above continues to work if the assumption by $\underset{a} {\mathrm{max}} ~\|w_a\|_{op}^2 \le \nu \frac{1}{n}$ on the operator norm of the basis elements is replaced by the incoherence properties 
 \begin{align*}
-\underset{a} {\mathrm{max}} ~\|\mathcal{P}_Tw_a\|_F^2 &\le 2\nu \dfrac{r}{n},\\
-\underset{a} {\mathrm{max}} ~~(w_a,\text{sgn}\rho)^2 &\le \nu\dfrac{r}{n^2}
+\underset{a} {\mathrm{max}} ~\|\mathcal{P}_Tw_a\|_F^2 &\le 2\nu \frac{r}{n},\\
+\underset{a} {\mathrm{max}} ~~(w_a,\text{sgn}\rho)^2 &\le \nu\frac{r}{n^2}
 \end{align*}
 
 Indeed, in the discussion of the golfing scheme, we reffered to the operator norm of $w_a$ exactly once. In the proof of Lemma 7, we considered the quantity
 \begin{equation}
-X_a = \dfrac{n^2}{m}\mathcal{P}_T^\perp w_a(w_a, F).
+X_a = \frac{n^2}{m}\mathcal{P}_T^\perp w_a(w_a, F).
 \end{equation}
 After Equation (\ref{eq:37}), the variance
 \[
-\|\mathbb{E}[X_{A_i}^2]\|_{op} \le \dfrac{n^2}{m^2}\sum_a(w_a,F)^2\|(\mathcal{P}_T^\perp w_a)^2\|_{op}
+\|\mathbb{E}[X_{A_i}^2]\|_{op} \le \frac{n^2}{m^2}\sum_a(w_a,F)^2\|(\mathcal{P}_T^\perp w_a)^2\|_{op}
 \]
-was upper-bounded using the fact that $\|(\mathcal{P}_T^\perp w_a)^2\|_{op} \le \dfrac{\nu}{n}$. Clearly the absence of this assumption can be compensated for by a suitable bound on $(w_a,F)^2$. This will be made precise below.
+was upper-bounded using the fact that $\|(\mathcal{P}_T^\perp w_a)^2\|_{op} \le \frac{\nu}{n}$. Clearly the absence of this assumption can be compensated for by a suitable bound on $(w_a,F)^2$. This will be made precise below.
 
 Assume that $F$ os sp,e ,atrox om $T$ with $\|F\|_F = 1$. Further, assume that at least one of the following two bounds
 \begin{align}
-\underset{a} {\mathrm{max}} ~\|w_a\|_{op}^2 & \le \dfrac{v}{n}\\
-\underset{a} {\mathrm{max}} ~|(w_a,F)|^2 & \le \dfrac{v}{n^2}
+\underset{a} {\mathrm{max}} ~\|w_a\|_{op}^2 & \le \frac{v}{n}\\
+\underset{a} {\mathrm{max}} ~|(w_a,F)|^2 & \le \frac{v}{n^2}
 \end{align}
 holds.
 
 Note that
 \begin{equation}
-\|\mathbb{E}[X_{A_i}^2]\|_{op} \le \dfrac{n^3}{m^2}underset{\psi} {\mathrm{max}} ~\sum_a(w_a,F)^2\dfrac{1}{n}<\psi,w_a^2\psi>,
+\|\mathbb{E}[X_{A_i}^2]\|_{op} \le \frac{n^3}{m^2}underset{\psi} {\mathrm{max}} ~\sum_a(w_a,F)^2\frac{1}{n}<\psi,w_a^2\psi>,
 \label{eq:43}
 \end{equation}
 where the maximum is over all normalized vectors $\psi \in (range  \, \rho)^\perp$. Let $\psi_0$ be a vector achieving the maximum. Define two vectors $p,q$ in $\mathbb{R}^{n^2}$ by setting their components to 
 \begin{equation}
-q_a := (w_a,F)^2, \qquad p_a := \dfrac{1}{n}<\psi_0,w_a^2\psi_0>
+q_a := (w_a,F)^2, \qquad p_a := \frac{1}{n}<\psi_0,w_a^2\psi_0>
 \label{eq:44}
 \end{equation}
 
@@ -940,44 +951,44 @@ Compute:
 
 Thus,
 \[
-\|p\|_1 = \sum_ap_a = \dfrac{1}{n}<\psi_0,n\mathbb{1}\psi_0>
+\|p\|_1 = \sum_ap_a = \frac{1}{n}<\psi_0,n\mathbb{1}\psi_0>
 \]
 
-We return to the vectors in (\ref{eq:44}). The assumptions made imply that at least one of the vectors is element-wise bounded above by $\dfrac{\nu}{n^2}$.Thus
+We return to the vectors in (\ref{eq:44}). The assumptions made imply that at least one of the vectors is element-wise bounded above by $\frac{\nu}{n^2}$.Thus
 \begin{equation}
-\left|\sum_ap_aq_a\right| \le \min\lbrace \|p\|_1 \|q\|_\infty,\|p\|_\infty \|q\|_1 \rbrace \le \dfrac{\nu}{n^2}
+\left|\sum_ap_aq_a\right| \le \min\lbrace \|p\|_1 \|q\|_\infty,\|p\|_\infty \|q\|_1 \rbrace \le \frac{\nu}{n^2}
 \end{equation}
 Plugging this estimate into the computation of the variance (\ref{eq:43}) we obtin
 \[
-\mathbb{E}[X_{A_i}^2]\|_{op} \le \dfrac{n^3}{m^2}\dfrac{\nu}{n^2} = \dfrac{\nu}{m\kappa r}.
+\mathbb{E}[X_{A_i}^2]\|_{op} \le \frac{n^3}{m^2}\frac{\nu}{n^2} = \frac{\nu}{m\kappa r}.
 \]
 We have proved the general analogue of Lemma 7:
 
 \textbf{Lemma 9.} \textit{Let $F \in T$. Let $f\ge \|F\|_F$ be an upper bound on the Frobenius norm of F. Assume that one of the two bounds}
 \begin{align}
-\underset{a} {\mathrm{max}} ~\|w_a\|_{op}^2 & \le \dfrac{v}{n}\\
-\underset{a} {\mathrm{max}} ~|(w_a,F)|^2 & \le \dfrac{v}{n^2}f^2
+\underset{a} {\mathrm{max}} ~\|w_a\|_{op}^2 & \le \frac{v}{n}\\
+\underset{a} {\mathrm{max}} ~|(w_a,F)|^2 & \le \frac{v}{n^2}f^2
 \end{align}
 \textit{holds}. \textit{Then}
 
 \begin{equation}
-\mathbb{P} \left[  \|\mathcal{P}_T^\perp\mathcal{R}F\|_{op} >t    \right] \le 2n \exp\left(-\dfrac{t^2\kappa r}{4\nu f^2} \right),
+\mathbb{P} \left[  \|\mathcal{P}_T^\perp\mathcal{R}F\|_{op} >t    \right] \le 2n \exp\left(-\frac{t^2\kappa r}{4\nu f^2} \right),
 \end{equation}
 \textit{for $t\le \sqrt{2/r}f$.}
 
-Next, we have to justify the bounds on $(w_a,F)^2$ we imposed in the previous lemma, By assumption $\underset{a} {\mathrm{max}} ~(w_a,\text{sgn}\rho)^2 \le \nu\dfrac{r}{n^2}$, the estimate does hold for $F = \text{sgn} \rho$, i.e. Lemma 9 may be applied during the first leg $X_0 = \text{sgn} \rho$ of the ``golfing scheme''. However, there is no a priori reason that the same be true for $X_1 = (\mathbb{1}-\mathcal{P}_T\mathcal{R}_1\mathcal{P}_T)X_0$. For nor, all we know about $X_1$ is that it is an element of T and hence low-rank. This property was enough for Fourier-type bases, but in the general case, it proves too weak. We thus hae to ensure that``inhomogeneity'' of $X_i$ implies inhomoheneity of $X_{i+1}$, a fact that can be ascertained using yet another Chernoff bound.
+Next, we have to justify the bounds on $(w_a,F)^2$ we imposed in the previous lemma, By assumption $\underset{a} {\mathrm{max}} ~(w_a,\text{sgn}\rho)^2 \le \nu\frac{r}{n^2}$, the estimate does hold for $F = \text{sgn} \rho$, i.e. Lemma 9 may be applied during the first leg $X_0 = \text{sgn} \rho$ of the ``golfing scheme''. However, there is no a priori reason that the same be true for $X_1 = (\mathbb{1}-\mathcal{P}_T\mathcal{R}_1\mathcal{P}_T)X_0$. For nor, all we know about $X_1$ is that it is an element of T and hence low-rank. This property was enough for Fourier-type bases, but in the general case, it proves too weak. We thus hae to ensure that``inhomogeneity'' of $X_i$ implies inhomoheneity of $X_{i+1}$, a fact that can be ascertained using yet another Chernoff bound.
 
 Let $\mu(F) = \underset{a} {\mathrm{max}} ~(w_a,F)^2$ be the maximal squared overlap between $F$ and any element of the operator basis.
 
 \textbf{Lemma 10.}\textit{Let $F \in T$. Then}
 \[
-\mathbb{P}[ \mu(\mathbb{1}-\mathcal{P}_T\mathcal{R}\mathcal{P}_T)F > t] \le 2n^2 \exp \left( -\dfrac{t\kappa}{4\mu(F)\nu}\right)
+\mathbb{P}[ \mu(\mathbb{1}-\mathcal{P}_T\mathcal{R}\mathcal{P}_T)F > t] \le 2n^2 \exp \left( -\frac{t\kappa}{4\mu(F)\nu}\right)
 \]
 \textit{for all $t \le \mu(F)$}.
 \begin{proof}
 Fix $b \in [1,n^2]$. Define
 \begin{equation}
-X_a = \dfrac{1}{m}(w_a,F)-(w_b,\dfrac{n^2}{m}\mathcal{P}_Tw_a)(w_a,F).
+X_a = \frac{1}{m}(w_a,F)-(w_b,\frac{n^2}{m}\mathcal{P}_Tw_a)(w_a,F).
 \label{eq:50}
 \end{equation}  
 
@@ -987,24 +998,24 @@ Then
 \]
 Note that the first term in (\ref{eq:50}) is the expectation value of the second one. Therefore, $\mathbb{E}[X_{A_i}]=0$ and the variance of $X_{A_i}$ is bounded above by the variance of the second term alone (as in the proof of Lemma 5):
 \begin{align*}
-\mathbb{E}[X_{A_i}^2] & \le \dfrac{1}{n^2}\sum_a(w_b,\dfrac{n^2}{m}\mathcal{P}_Tw_a)^2(w_a,F)^2\\
-& \le \dfrac{n^2}{m}\mu(F)\sum_a(\mathcal{P}_Tw_b,w_a)^2\\
-& =  \dfrac{n^2}{m}\mu(F)\|\mathcal{P}_Tw_b\|_F^2\\
-& \le \dfrac{n^2\mu(F)\nu r}{m^2n}\\
-& = \dfrac{\mu(F)\nu}{m\kappa} =: V_0^2
+\mathbb{E}[X_{A_i}^2] & \le \frac{1}{n^2}\sum_a(w_b,\frac{n^2}{m}\mathcal{P}_Tw_a)^2(w_a,F)^2\\
+& \le \frac{n^2}{m}\mu(F)\sum_a(\mathcal{P}_Tw_b,w_a)^2\\
+& =  \frac{n^2}{m}\mu(F)\|\mathcal{P}_Tw_b\|_F^2\\
+& \le \frac{n^2\mu(F)\nu r}{m^2n}\\
+& = \frac{\mu(F)\nu}{m\kappa} =: V_0^2
 \end{align*}
 Further,
 \[
-|X_{A_i}| \le \dfrac{1}{m}\mu(F)^{1/2}\left(1+n^2\dfrac{\nu r}{n}\right) = \dfrac{1}{m}\mu(F)^{1/2}(1+n\nu)r.
+|X_{A_i}| \le \frac{1}{m}\mu(F)^{1/2}\left(1+n^2\frac{\nu r}{n}\right) = \frac{1}{m}\mu(F)^{1/2}(1+n\nu)r.
 \]
 Thus, from the Chernoff bound:
 \begin{align*}
 & \mathbb{P}\left[|(w_b,(\mathbb{1}-\mathcal{P}_T\mathcal{R}\mathcal{P}_T)F))|> \sqrt{t} \right] 
-&\le 2\exp\left(-\dfrac{t\kappa}{4\mu(F)\nu}\right)
+&\le 2\exp\left(-\frac{t\kappa}{4\mu(F)\nu}\right)
 \end{align*}
 as long as $\sqrt{t}$ does not exceed
 \[
-\dfrac{2mV_0^2}{|X_{A_i}|} = \dfrac{2m\mu(F)\nu}{m\kappa}\dfrac{m}{\mu(F)^{1/2}(1+n\mu r)}\le \mu(F)^{1/2}
+\frac{2mV_0^2}{|X_{A_i}|} = \frac{2m\mu(F)\nu}{m\kappa}\frac{m}{\mu(F)^{1/2}(1+n\mu r)}\le \mu(F)^{1/2}
 \]
 
 The advertised estimate follows by taking squares and applying the union bound over the $n^2$ elements of the basis.
@@ -1025,15 +1036,15 @@ Then, with
 it follows that
 \[
 \|X_i\|_F \le 2^{-i}\|\text{sgn} \rho\|_F = 2^{-i}\sqrt{r},\\
-\mu(X_i) \le 2^{-2i}\mu(\text{sgn} \rho) \le \dfrac{\nu}{n^2}(2^{-2i}r).
+\mu(X_i) \le 2^{-2i}\mu(\text{sgn} \rho) \le \frac{\nu}{n^2}(2^{-2i}r).
 \]
 Thus, in $i$th iteration of the golfing scheme, we can apply Lemma 9 with $F = X_i$ and $f = 2^{-i}\sqrt{r}$.
 
 The failure probabilities $p_1,p_{op}(i),p_3(i)$ are as before. Further
 \[
-p_4(i) \le 2n^2 \exp\left( -\dfrac{\kappa_i}{16\nu} \right),
+p_4(i) \le 2n^2 \exp\left( -\frac{\kappa_i}{16\nu} \right),
 \]
-which, as the other probabilities, is bounded above by $\dfrac{1}{3l}n^{-\beta}$. By the union bound, Theorem 3 holds as long as 
+which, as the other probabilities, is bounded above by $\frac{1}{3l}n^{-\beta}$. By the union bound, Theorem 3 holds as long as 
 \[
 m > \log_2(2n^2\sqrt{r}) 64\nu(\ln(4n^2)+\ln(3l)+\beta\ln n) rn
 \]
